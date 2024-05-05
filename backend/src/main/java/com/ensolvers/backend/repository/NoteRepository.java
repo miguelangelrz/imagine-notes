@@ -6,5 +6,5 @@ import java.util.List;
 public interface NoteRepository {
     public Note save(Note note);
 
-    public List<Note> getAllNotes();
+    public List<Note> findAll();
 }
