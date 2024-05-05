@@ -1,4 +1,4 @@
-# Analysis
+# Logger
 
 Here I will document my decision taking process and my journey in general with this project.
 
@@ -16,4 +16,12 @@ I decided to use Java over other alternatives like Node.js, Golang or even Pytho
 * Structure: Being an Object-Oriented language give me a structure and rules that match with the problem design
 * Company culture: Since part of my process required certain knowledge about Java, and also the example of the layered architecture was also on this language; I feel like using Java is what match with the usual way of approaching the problems here.
 
+## Database
+
+For the database we could consider working with SQL or NoSQL databases since with both I was able to persist the data.
+In this opportunity I choose working with RDBMS because the structure of the data matches the idea of relational databases and the amount of data that is handled for a single user is not something to worry about. So I think suits perfect for the implementation.
+
+The concrete tools to get along with this implementation will be Postgresql and Hibernate as the ORM tool
+
+![db_model.png](static/db_model.png)
 
