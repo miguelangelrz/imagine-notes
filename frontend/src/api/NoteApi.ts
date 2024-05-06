@@ -42,4 +42,28 @@ export class NoteApi implements NoteRepository {
       return Promise.reject(e);
     }
   }
+
+  async archive(id: number): Promise<Note> {
+    try {
+      const response = await axios.put(`${host}${basePath}/notes/${id}/archive`);
+
+      return Promise.resolve(response.data);
+    } catch (e) {
+      console.error(e);
+
+      return Promise.reject(e);
+    }
+  }
+
+  async restore(id: number): Promise<Note> {
+    try {
+      const response = await axios.put(`${host}${basePath}/notes/${id}/restore`);
+
+      return Promise.resolve(response.data);
+    } catch (e) {
+      console.error(e);
+
+      return Promise.reject(e);
+    }
+  }
 }

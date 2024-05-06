@@ -18,4 +18,12 @@ export class NoteService {
   async deleteNote(id: number): Promise<Note> {
     return this.noteRepository.delete(id);
   }
+
+  async archiveNote(id: number): Promise<Note> {
+    return this.noteRepository.archive(id);
+  }
+
+  async restoreNote(id: number): Promise<Note> {
+    return this.noteRepository.restore(id);
+  }
 }

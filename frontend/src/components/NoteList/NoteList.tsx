@@ -1,12 +1,19 @@
 import NoteCard from "./NoteCard.tsx";
-import {Note} from "../../entity/Note.tsx";
+import { Note } from "../../entity/Note.tsx";
 
 type NoteListProps = {
   notes: Array<Note>;
   onDeleteNote: (id: number) => void;
-}
+  onArchiveNote: (id: number) => void;
+  onRestoreNote: (id: number) => void;
+};
 
-function NoteList({ notes, onDeleteNote }: NoteListProps) {
+function NoteList({
+  notes,
+  onDeleteNote,
+  onArchiveNote,
+  onRestoreNote,
+}: NoteListProps) {
   return (
     <ol>
       {notes.map((note: Note) => (
@@ -14,6 +21,8 @@ function NoteList({ notes, onDeleteNote }: NoteListProps) {
           <NoteCard
             note={note}
             onDelete={onDeleteNote}
+            onArchive={onArchiveNote}
+            onRestore={onRestoreNote}
           />
         </li>
       ))}
