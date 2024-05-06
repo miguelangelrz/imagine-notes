@@ -59,6 +59,19 @@ public class NoteRepositoryImpl implements  NoteRepository {
     }
 
     @Override
+    public Note edit(Long id, Note note) {
+        Note noteToBeEdited = entityManager.find(Note.class, id);
+        if (noteToBeEdited != null) {
+            noteToBeEdited.setTitle(note.getTitle());
+            noteToBeEdited.setContent(note.getContent());
+
+            entityManager.merge(noteToBeEdited);
+        }
+
+        return noteToBeEdited;
+    }
+
+    @Override
     public Note delete(Long id) {
         Note noteToBeDeleted = entityManager.find(Note.class, id);
         if (noteToBeDeleted != null) {

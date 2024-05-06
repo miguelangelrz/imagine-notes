@@ -26,6 +26,10 @@ public class NoteService {
         return noteRepository.findByArchived(isArchived);
     }
 
+    public Note editNote(Long noteId, Note note) {
+        return noteRepository.edit(noteId, note);
+    }
+
     public Note deleteNote(Long noteId) {
         return noteRepository.delete(noteId);
     }

@@ -11,6 +11,8 @@ public interface NoteRepository {
 
     public List<Note> findByArchived(boolean archived);
 
+    public Note edit(Long id, Note note);
+
     public Note delete(Long id);
 
     public Note archive(Long id);
