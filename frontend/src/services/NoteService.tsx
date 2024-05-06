@@ -14,4 +14,8 @@ export class NoteService {
   async createNote(note: CreateNoteRequest): Promise<Note> {
     return this.noteRepository.create(note);
   }
+
+  async deleteNote(id: number): Promise<Note> {
+    return this.noteRepository.delete(id);
+  }
 }

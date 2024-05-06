@@ -20,7 +20,6 @@ function NoteCreateForm({onCreateNote}: NoteCreatedFormProps) {
     e.preventDefault();
 
     const note = await createNoteUseCase.execute({title, content});
-    console.log("#created-note", note);
     if (onCreateNote) onCreateNote(note);
   }
 

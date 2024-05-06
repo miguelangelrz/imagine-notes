@@ -5,10 +5,12 @@ import {NoteService} from "./services/NoteService.tsx";
 import {useEffect, useState} from "react";
 import {Note} from "./entity/Note.tsx";
 import {NoteApi} from "./api/NoteApi.ts";
+import {DeleteNote} from "./useCase/DeleteNote.ts";
 
 const notesRepository = new NoteApi();
 const notesService = new NoteService(notesRepository);
 const getAllNotesUseCase = new GetAllNotes(notesService);
+const deleteNoteUseCase = new DeleteNote(notesService);
 
 function App() {
   const [notes, setNotes] = useState<Array<Note>>([]);
@@ -20,12 +22,16 @@ function App() {
   const updateNotes = async () => {
     setNotes(await getAllNotesUseCase.execute());
   }
+  const deleteNote = async (id: number) => {
+    await deleteNoteUseCase.execute(id);
+    await updateNotes();
+  }
 
   return (
     <div className="bg-slate-100 w-screen h-screen p-7">
       <h1 className="text-center font-bold text-4xl mb-5">My notes</h1>
       <div className="flex">
-        <NoteList notes={notes} />
+        <NoteList notes={notes} onDeleteNote={deleteNote} />
         <NoteCreateForm onCreateNote={updateNotes} />
       </div>
     </div>

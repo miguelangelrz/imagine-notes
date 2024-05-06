@@ -13,7 +13,7 @@ export class NoteApi implements NoteRepository {
 
       return Promise.resolve(response.data);
     } catch (e) {
-      console.error("#error", e);
+      console.error(e);
 
       return Promise.reject(e);
     }
@@ -22,11 +22,22 @@ export class NoteApi implements NoteRepository {
   async getAll(): Promise<Note[]> {
     try {
       const response = await axios.get(`${host}${basePath}/notes`);
-      console.log("#response", response.data);
 
       return Promise.resolve(response.data);
     } catch (e) {
-      console.error("#error", e);
+      console.error(e);
+
+      return Promise.reject(e);
+    }
+  }
+
+  async delete(id: number): Promise<Note> {
+    try {
+      const response = await axios.delete(`${host}${basePath}/notes/${id}`);
+
+      return Promise.resolve(response.data);
+    } catch (e) {
+      console.error(e);
 
       return Promise.reject(e);
     }

@@ -3,15 +3,17 @@ import {Note} from "../../entity/Note.tsx";
 
 type NoteListProps = {
   notes: Array<Note>;
+  onDeleteNote: (id: number) => void;
 }
 
-function NoteList({ notes }: NoteListProps) {
+function NoteList({ notes, onDeleteNote }: NoteListProps) {
   return (
     <ol>
       {notes.map((note: Note) => (
-        <li>
+        <li key={note.id}>
           <NoteCard
             note={note}
+            onDelete={onDeleteNote}
           />
         </li>
       ))}
