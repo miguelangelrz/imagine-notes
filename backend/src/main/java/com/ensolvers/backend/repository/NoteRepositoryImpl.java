@@ -38,4 +38,14 @@ public class NoteRepositoryImpl implements  NoteRepository {
         TypedQuery<Note> query = session.createQuery(getAllQuery);
         return query.getResultList();
     }
+
+    @Override
+    public Note delete(Long id) {
+        Note noteToBeDeleted = entityManager.find(Note.class, id);
+        if (noteToBeDeleted != null) {
+            entityManager.remove(noteToBeDeleted);
+        }
+
+        return noteToBeDeleted;
+    }
 }

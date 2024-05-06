@@ -21,4 +21,8 @@ public class NoteService {
     public List<Note> getAllNotes() {
         return noteRepository.findAll();
     }
+
+    public Note deleteNote(Long noteId) {
+        return noteRepository.delete(noteId);
+    }
 }

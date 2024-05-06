@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
@@ -28,5 +27,11 @@ public class NoteController {
     public ResponseEntity<List<Note>> getAllNotes() {
         List<Note> notes = noteService.getAllNotes();
         return new ResponseEntity<>(notes, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Note> deleteNote(@PathVariable Long id) {
+        Note deletedNote = noteService.deleteNote(id);
+        return new ResponseEntity<>(deletedNote, HttpStatus.OK);
     }
 }

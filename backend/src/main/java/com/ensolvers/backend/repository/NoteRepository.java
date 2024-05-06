@@ -7,4 +7,6 @@ public interface NoteRepository {
     public Note save(Note note);
 
     public List<Note> findAll();
+
+    public Note delete(Long id);
 }
