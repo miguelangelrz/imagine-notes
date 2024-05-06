@@ -33,9 +33,28 @@ public class NoteRepositoryImpl implements  NoteRepository {
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<Note> criteriaQuery = criteriaBuilder.createQuery(Note.class);
         Root<Note> root = criteriaQuery.from(Note.class);
-        CriteriaQuery<Note> getAllQuery = criteriaQuery.select(root);
 
-        TypedQuery<Note> query = session.createQuery(getAllQuery);
+        criteriaQuery.select(root);
+
+        TypedQuery<Note> query = session.createQuery(criteriaQuery);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Note> findByArchived(boolean archived) {
+        Session session = entityManager.unwrap(Session.class);
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Note> criteriaQuery = criteriaBuilder.createQuery(Note.class);
+        Root<Note> root = criteriaQuery.from(Note.class);
+
+        if (archived) {
+            criteriaQuery.select(root).where(criteriaBuilder.isTrue(root.get("isArchived")));
+        } else{
+            criteriaQuery.select(root).where(criteriaBuilder.isFalse(root.get("isArchived")));
+        }
+
+        TypedQuery<Note> query = session.createQuery(criteriaQuery);
         return query.getResultList();
     }
 

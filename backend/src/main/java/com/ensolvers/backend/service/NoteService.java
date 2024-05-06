@@ -22,6 +22,10 @@ public class NoteService {
         return noteRepository.findAll();
     }
 
+    public List<Note> getNoteByArchived(boolean isArchived) {
+        return noteRepository.findByArchived(isArchived);
+    }
+
     public Note deleteNote(Long noteId) {
         return noteRepository.delete(noteId);
     }

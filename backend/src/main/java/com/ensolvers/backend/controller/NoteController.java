@@ -24,8 +24,14 @@ public class NoteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Note>> getAllNotes() {
-        List<Note> notes = noteService.getAllNotes();
+    public ResponseEntity<List<Note>> getAllNotes(@RequestParam(required = false) Boolean archived) {
+        List<Note> notes;
+        if (archived == null) {
+            notes = noteService.getAllNotes();
+        } else {
+            notes = noteService.getNoteByArchived(archived);
+        }
+
         return new ResponseEntity<>(notes, HttpStatus.OK);
     }
 
