@@ -6,6 +6,7 @@ type NoteListProps = {
   onDeleteNote: (id: number) => void;
   onArchiveNote: (id: number) => void;
   onRestoreNote: (id: number) => void;
+  onEditNote: (note: Note) => void;
 };
 
 function NoteList({
@@ -13,6 +14,7 @@ function NoteList({
   onDeleteNote,
   onArchiveNote,
   onRestoreNote,
+  onEditNote,
 }: NoteListProps) {
   return (
     <ol>
@@ -23,6 +25,7 @@ function NoteList({
             onDelete={onDeleteNote}
             onArchive={onArchiveNote}
             onRestore={onRestoreNote}
+            onEdit={onEditNote}
           />
         </li>
       ))}

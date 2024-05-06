@@ -1,5 +1,5 @@
 import {NoteService} from "../services/NoteService.tsx";
-import {CreateNoteRequest} from "../models/CreateNoteRequest.ts";
+import {SaveNoteRequest} from "../models/SaveNoteRequest.ts";
 import {Note} from "../entity/Note.tsx";
 
 export class CreateNote {
@@ -9,7 +9,7 @@ export class CreateNote {
     this.noteService = noteService;
   }
 
-  public async execute(note: CreateNoteRequest): Promise<Note> {
+  public async execute(note: SaveNoteRequest): Promise<Note> {
     return this.noteService.createNote(note);
   }
 }

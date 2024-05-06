@@ -1,6 +1,6 @@
 import { NoteRepository } from "../repository/NoteRepository.tsx";
 import { Note } from "../entity/Note.tsx";
-import { CreateNoteRequest } from "../models/CreateNoteRequest.ts";
+import { SaveNoteRequest } from "../models/SaveNoteRequest.ts";
 import axios from "axios";
 import { NotesQueryParams } from "../models/NotesQueryParams.ts";
 import { objectToQueryString } from "../utils/objectToQueryString.ts";
@@ -9,7 +9,7 @@ const host = "http://localhost:8080";
 const basePath = "/api";
 
 export class NoteApi implements NoteRepository {
-  async create(note: CreateNoteRequest): Promise<Note> {
+  async create(note: SaveNoteRequest): Promise<Note> {
     try {
       const response = await axios.post(`${host}${basePath}/notes`, note);
 
@@ -38,6 +38,18 @@ export class NoteApi implements NoteRepository {
       const response = await axios.get(
         `${host}${basePath}/notes?${objectToQueryString(query)}`,
       );
+
+      return Promise.resolve(response.data);
+    } catch (e) {
+      console.error(e);
+
+      return Promise.reject(e);
+    }
+  }
+
+  async edit(id: number, note: SaveNoteRequest): Promise<Note> {
+    try {
+      const response = await axios.put(`${host}${basePath}/notes/${id}`, note);
 
       return Promise.resolve(response.data);
     } catch (e) {
@@ -86,4 +98,6 @@ export class NoteApi implements NoteRepository {
       return Promise.reject(e);
     }
   }
+
+
 }

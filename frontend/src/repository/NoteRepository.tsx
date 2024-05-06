@@ -1,13 +1,15 @@
 import { Note } from "../entity/Note.tsx";
-import { CreateNoteRequest } from "../models/CreateNoteRequest.ts";
+import { SaveNoteRequest } from "../models/SaveNoteRequest.ts";
 import { NotesQueryParams } from "../models/NotesQueryParams.ts";
 
 export interface NoteRepository {
-  create(note: CreateNoteRequest): Promise<Note>;
+  create(note: SaveNoteRequest): Promise<Note>;
 
   getAll(): Promise<Note[]>;
 
   getFiltered(query: NotesQueryParams): Promise<Note[]>;
+
+  edit(id: number, note: SaveNoteRequest): Promise<Note>;
 
   delete(id: number): Promise<Note>;
 

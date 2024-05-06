@@ -1,4 +1,4 @@
-export type CreateNoteRequest = {
+export type SaveNoteRequest = {
   title: string,
   content: string,
 }

@@ -1,27 +1,40 @@
-import { FormEvent, useState } from "react";
-import { CreateNote } from "../../useCase/CreateNote.ts";
+import { FormEvent, useEffect, useState } from "react";
 import { NoteService } from "../../services/NoteService.tsx";
 import { Note } from "../../entity/Note.tsx";
 import { NoteApi } from "../../api/NoteApi.ts";
+import { EditNote } from "../../useCase/EditNote.ts";
 
 const noteRepository = new NoteApi();
 const noteService = new NoteService(noteRepository);
-const createNoteUseCase = new CreateNote(noteService);
+const editNoteUseCase = new EditNote(noteService);
 
-type NoteCreatedFormProps = {
-  onCreateNote?: (note: Note) => void;
+type NoteEditFormProps = {
+  initialNote: Note;
+  onEditNote?: (note: Note) => void;
   onCancel: () => void;
 };
 
-function NoteCreateForm({ onCreateNote, onCancel }: NoteCreatedFormProps) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+function NoteEditForm({
+  initialNote,
+  onEditNote,
+  onCancel,
+}: NoteEditFormProps) {
+  const [title, setTitle] = useState(initialNote.title || "");
+  const [content, setContent] = useState(initialNote.content || "");
+
+  useEffect(() => {
+    setTitle(initialNote.title || "");
+    setContent(initialNote.content || "");
+  }, [initialNote]);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const note = await createNoteUseCase.execute({ title, content });
-    if (onCreateNote) onCreateNote(note);
+    const note = await editNoteUseCase.execute(initialNote.id, {
+      title,
+      content,
+    });
+    if (onEditNote) onEditNote(note);
     onCancel();
   };
 
@@ -41,9 +54,9 @@ function NoteCreateForm({ onCreateNote, onCancel }: NoteCreatedFormProps) {
         value={content}
       />
       <button onClick={onCancel}>Cancel</button>
-      <button type="submit">Create</button>
+      <button type="submit">Edit</button>
     </form>
   );
 }
 
-export default NoteCreateForm;
+export default NoteEditForm;

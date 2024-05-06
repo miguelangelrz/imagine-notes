@@ -1,6 +1,6 @@
 import {NoteRepository} from "../repository/NoteRepository.tsx";
 import {Note} from "../entity/Note.tsx";
-import {CreateNoteRequest} from "../models/CreateNoteRequest.ts";
+import {SaveNoteRequest} from "../models/SaveNoteRequest.ts";
 import {NotesQueryParams} from "../models/NotesQueryParams.ts";
 
 export class NoteService {
@@ -16,8 +16,12 @@ export class NoteService {
     return this.noteRepository.getFiltered(query);
   }
 
-  async createNote(note: CreateNoteRequest): Promise<Note> {
+  async createNote(note: SaveNoteRequest): Promise<Note> {
     return this.noteRepository.create(note);
+  }
+
+  async editNote(id: number, note: SaveNoteRequest): Promise<Note> {
+    return this.noteRepository.edit(id, note);
   }
 
   async deleteNote(id: number): Promise<Note> {
