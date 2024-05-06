@@ -25,3 +25,6 @@ The concrete tools to get along with this implementation will be Postgresql and 
 
 ![db_model.png](static/db_model.png)
 
+## Why React
+
+React is a library that help us start with a minimal configuration and allow escalation to build really complex UIs. With the Vite bootstrap application that include typescript is enough to fulfill the requirement and work with and structured data model.
