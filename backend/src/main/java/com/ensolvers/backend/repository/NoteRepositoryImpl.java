@@ -48,4 +48,30 @@ public class NoteRepositoryImpl implements  NoteRepository {
 
         return noteToBeDeleted;
     }
+
+    @Override
+    public Note archive(Long id) {
+        Note noteToBeArchived = entityManager.find(Note.class, id);
+
+        if (noteToBeArchived != null) {
+            noteToBeArchived.setArchived(true);
+
+            entityManager.merge(noteToBeArchived);
+        }
+
+        return noteToBeArchived;
+    }
+
+    @Override
+    public Note restore(Long id) {
+        Note noteToBeRestored = entityManager.find(Note.class, id);
+
+        if (noteToBeRestored != null) {
+            noteToBeRestored.setArchived(false);
+
+            entityManager.merge(noteToBeRestored);
+        }
+
+        return noteToBeRestored;
+    }
 }

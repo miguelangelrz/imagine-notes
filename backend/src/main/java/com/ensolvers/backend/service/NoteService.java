@@ -25,4 +25,12 @@ public class NoteService {
     public Note deleteNote(Long noteId) {
         return noteRepository.delete(noteId);
     }
+
+    public Note archiveNote(Long noteId) {
+        return noteRepository.archive(noteId);
+    }
+
+    public Note restoreNote(Long noteId) {
+        return noteRepository.restore(noteId);
+    }
 }

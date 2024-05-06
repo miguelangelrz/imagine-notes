@@ -26,6 +26,9 @@ public class Note {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    @Column(nullable = false, columnDefinition = "boolean default false")
+    private boolean isArchived;
+
     public Long getId() {
         return id;
     }
@@ -64,5 +67,13 @@ public class Note {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 }

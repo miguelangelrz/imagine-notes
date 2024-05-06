@@ -9,4 +9,8 @@ public interface NoteRepository {
     public List<Note> findAll();
 
     public Note delete(Long id);
+
+    public Note archive(Long id);
+
+    public Note restore(Long id);
 }

@@ -34,4 +34,16 @@ public class NoteController {
         Note deletedNote = noteService.deleteNote(id);
         return new ResponseEntity<>(deletedNote, HttpStatus.OK);
     }
+
+    @PutMapping("/{id}/archive")
+    public ResponseEntity<Note> archiveNote(@PathVariable Long id) {
+        Note archivedNote = noteService.archiveNote(id);
+        return new ResponseEntity<>(archivedNote, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/restore")
+    public ResponseEntity<Note> restoreNote(@PathVariable Long id) {
+        Note restoredNote = noteService.restoreNote(id);
+        return new ResponseEntity<>(restoredNote, HttpStatus.OK);
+    }
 }
