@@ -2,9 +2,9 @@ import {FormEvent, useState} from "react";
 import {CreateNote} from "../../useCase/CreateNote.ts";
 import {NoteService} from "../../services/NoteService.tsx";
 import {Note} from "../../entity/Note.tsx";
-import {NoteLocal} from "../../api/NoteLocal.ts";
+import {NoteApi} from "../../api/NoteApi.ts";
 
-const noteRepository = new NoteLocal();
+const noteRepository = new NoteApi();
 const noteService = new NoteService(noteRepository);
 const createNoteUseCase = new CreateNote(noteService);
 

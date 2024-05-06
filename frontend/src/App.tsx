@@ -2,11 +2,11 @@ import NoteList from "./components/NoteList/NoteList.tsx";
 import NoteCreateForm from "./components/NoteEditor/NoteCreateForm.tsx";
 import {GetAllNotes} from "./useCase/GetAllNotes.ts";
 import {NoteService} from "./services/NoteService.tsx";
-import {NoteLocal} from "./api/NoteLocal.ts";
 import {useEffect, useState} from "react";
 import {Note} from "./entity/Note.tsx";
+import {NoteApi} from "./api/NoteApi.ts";
 
-const notesRepository = new NoteLocal();
+const notesRepository = new NoteApi();
 const notesService = new NoteService(notesRepository);
 const getAllNotesUseCase = new GetAllNotes(notesService);
 
