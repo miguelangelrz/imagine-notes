@@ -2,6 +2,8 @@ import { NoteRepository } from "../repository/NoteRepository.tsx";
 import { Note } from "../entity/Note.tsx";
 import { CreateNoteRequest } from "../models/CreateNoteRequest.ts";
 import axios from "axios";
+import { NotesQueryParams } from "../models/NotesQueryParams.ts";
+import { objectToQueryString } from "../utils/objectToQueryString.ts";
 
 const host = "http://localhost:8080";
 const basePath = "/api";
@@ -31,6 +33,20 @@ export class NoteApi implements NoteRepository {
     }
   }
 
+  async getFiltered(query: NotesQueryParams): Promise<Note[]> {
+    try {
+      const response = await axios.get(
+        `${host}${basePath}/notes?${objectToQueryString(query)}`,
+      );
+
+      return Promise.resolve(response.data);
+    } catch (e) {
+      console.error(e);
+
+      return Promise.reject(e);
+    }
+  }
+
   async delete(id: number): Promise<Note> {
     try {
       const response = await axios.delete(`${host}${basePath}/notes/${id}`);
@@ -45,7 +61,9 @@ export class NoteApi implements NoteRepository {
 
   async archive(id: number): Promise<Note> {
     try {
-      const response = await axios.put(`${host}${basePath}/notes/${id}/archive`);
+      const response = await axios.put(
+        `${host}${basePath}/notes/${id}/archive`,
+      );
 
       return Promise.resolve(response.data);
     } catch (e) {
@@ -57,7 +75,9 @@ export class NoteApi implements NoteRepository {
 
   async restore(id: number): Promise<Note> {
     try {
-      const response = await axios.put(`${host}${basePath}/notes/${id}/restore`);
+      const response = await axios.put(
+        `${host}${basePath}/notes/${id}/restore`,
+      );
 
       return Promise.resolve(response.data);
     } catch (e) {

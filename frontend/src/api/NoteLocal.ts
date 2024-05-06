@@ -2,7 +2,7 @@ import { NoteRepository } from "../repository/NoteRepository.tsx";
 import { Note } from "../entity/Note.tsx";
 import {CreateNoteRequest} from "../models/CreateNoteRequest.ts";
 
-const notes: Array<Note> = new Array<Note>();
+const notes: Note[] = new Note[]();
 
 export class NoteLocal implements NoteRepository {
   create(note: CreateNoteRequest): Promise<Note> {

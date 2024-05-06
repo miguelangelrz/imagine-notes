@@ -1,6 +1,7 @@
 import {NoteRepository} from "../repository/NoteRepository.tsx";
 import {Note} from "../entity/Note.tsx";
 import {CreateNoteRequest} from "../models/CreateNoteRequest.ts";
+import {NotesQueryParams} from "../models/NotesQueryParams.ts";
 
 export class NoteService {
   private noteRepository: NoteRepository;
@@ -9,6 +10,10 @@ export class NoteService {
 
   async getAllNotes(): Promise<Note[]> {
     return this.noteRepository.getAll();
+  }
+
+  async getFilteredNotes(query: NotesQueryParams): Promise<Note[]> {
+    return this.noteRepository.getFiltered(query);
   }
 
   async createNote(note: CreateNoteRequest): Promise<Note> {

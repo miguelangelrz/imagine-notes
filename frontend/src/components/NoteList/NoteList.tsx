@@ -2,7 +2,7 @@ import NoteCard from "./NoteCard.tsx";
 import { Note } from "../../entity/Note.tsx";
 
 type NoteListProps = {
-  notes: Array<Note>;
+  notes: Note[];
   onDeleteNote: (id: number) => void;
   onArchiveNote: (id: number) => void;
   onRestoreNote: (id: number) => void;

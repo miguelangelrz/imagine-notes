@@ -8,7 +8,7 @@ export class GetAllNotes {
     this.noteService = noteService;
   }
 
-  public async execute(): Promise<Array<Note>> {
+  public async execute(): Promise<Note[]> {
     return this.noteService.getAllNotes();
   }
 }
