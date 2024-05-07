@@ -17,9 +17,9 @@ function NoteList({
   onEditNote,
 }: NoteListProps) {
   return (
-    <ol>
+    <ol className="pt-5">
       {notes.map((note: Note) => (
-        <li key={note.id}>
+        <li key={note.id} className="mb-1">
           <NoteCard
             note={note}
             onDelete={onDeleteNote}

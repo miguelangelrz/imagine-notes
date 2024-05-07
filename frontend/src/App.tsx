@@ -73,9 +73,14 @@ function App() {
   return (
     <div className="bg-slate-100 w-screen h-screen p-7">
       <h1 className="text-center font-bold text-4xl mb-5">My notes</h1>
-      <div className="flex">
-        <div className="flex flex-col">
-          <button onClick={showCreateForm}>Create new note</button>
+      <div className="flex justify-center space-x-3">
+        <div className="flex flex-col w-1/2">
+          <button
+            onClick={showCreateForm}
+            className="w-full bg-amber-200 p-2 font-bold rounded mb-3"
+          >
+            + Create new note
+          </button>
           <NoteViewMenu currentView={listView} setView={setListView} />
           <NoteList
             notes={notes}
@@ -85,15 +90,19 @@ function App() {
             onEditNote={handleEdit}
           />
         </div>
-        {formView === FormView.CREATE && (
-          <NoteCreateForm onCreateNote={updateNotes} onCancel={hideForm} />
-        )}
-        {formView === FormView.EDIT && noteOnEdition != null && (
-          <NoteEditForm
-            initialNote={noteOnEdition}
-            onEditNote={updateNotes}
-            onCancel={hideForm}
-          />
+        {formView !== FormView.NONE && (
+          <div className="w-1/2">
+            {formView === FormView.CREATE && (
+              <NoteCreateForm onCreateNote={updateNotes} onCancel={hideForm} />
+            )}
+            {formView === FormView.EDIT && noteOnEdition != null && (
+              <NoteEditForm
+                initialNote={noteOnEdition}
+                onEditNote={updateNotes}
+                onCancel={hideForm}
+              />
+            )}
+          </div>
         )}
       </div>
     </div>

@@ -3,6 +3,10 @@ import { CreateNote } from "../../useCase/CreateNote.ts";
 import { NoteService } from "../../services/NoteService.tsx";
 import { Note } from "../../entity/Note.tsx";
 import { NoteApi } from "../../api/NoteApi.ts";
+import TitleInput from "./TitleInput.tsx";
+import ContentTextArea from "./ContentTextArea.tsx";
+import Button from "./Button.tsx";
+import { ButtonPriorityType } from "../../models/ButtonPriorityType.tsx";
 
 const noteRepository = new NoteApi();
 const noteService = new NoteService(noteRepository);
@@ -27,21 +31,23 @@ function NoteCreateForm({ onCreateNote, onCancel }: NoteCreatedFormProps) {
 
   return (
     <form className="flex flex-col" onSubmit={onSubmit}>
-      <input
-        placeholder="Title"
-        className="mb-1"
-        type="text"
-        onChange={(e) => setTitle(e.target.value)}
-        value={title}
-      />
-      <textarea
-        placeholder="Take a note..."
-        className="h-20"
-        onChange={(e) => setContent(e.target.value)}
+      <TitleInput value={title} onChange={(e) => setTitle(e.target.value)} />
+      <ContentTextArea
         value={content}
+        onChange={(e) => setContent(e.target.value)}
       />
-      <button onClick={onCancel}>Cancel</button>
-      <button type="submit">Create</button>
+
+      <div className="flex justify-end space-x-1 w-full mt-2">
+        <Button
+          label="Cancel"
+          priority={ButtonPriorityType.SECONDARY}
+          onClick={onCancel}
+        />
+        <Button
+          label="Create"
+          type="submit"
+        />
+      </div>
     </form>
   );
 }
