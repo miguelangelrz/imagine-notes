@@ -17,6 +17,7 @@ public class Note {
     private String title;
 
     @Column(nullable = false)
+    @Lob
     private String content;
 
     @CreationTimestamp
