@@ -1,5 +1,5 @@
 import { Note } from "../../entity/Note.tsx";
-import { MouseEventHandler} from "react";
+import { MouseEventHandler } from "react";
 
 type NoteQuickActionProps = {
   onAction: MouseEventHandler;
@@ -44,13 +44,18 @@ function NoteCard({
   const archive: MouseEventHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    onArchive(note.id)
-  }
+    onArchive(note.id);
+  };
   const restore: MouseEventHandler = (e) => {
     e.preventDefault();
     e.stopPropagation();
     onRestore(note.id);
-  }
+  };
+  const deleteTask: MouseEventHandler = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onDelete(note.id);
+  };
 
   return (
     <div
@@ -68,7 +73,7 @@ function NoteCard({
           show={note.archived}
           label="Restore"
         />
-        <NoteQuickAction onAction={() => onDelete(note.id)} label="Delete" />
+        <NoteQuickAction onAction={deleteTask} label="Delete" />
       </div>
       {Boolean(note.title) && <h4 className="font-bold">{note.title}</h4>}
 

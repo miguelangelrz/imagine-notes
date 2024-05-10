@@ -24,10 +24,10 @@ cleanup() {
   kill $(jobs -p) &>/dev/null
   pkill -f "java -jar"
 
-  sudo -u postgres psql -c "REVOKE ALL PRIVILEGES ON DATABASE ensolvers_notes FROM ensolvers;"
-  sudo -u postgres psql -c "REVOKE ALL ON SCHEMA public FROM ensolvers;"
-  sudo -u postgres psql -c "DROP DATABASE IF EXISTS ensolvers_notes;"
-  sudo -u postgres psql -c "DROP USER IF EXISTS ensolvers;"
+  sudo -u postgres psql -c "REVOKE ALL PRIVILEGES ON DATABASE imagine_notes FROM imagine;"
+  sudo -u postgres psql -c "REVOKE ALL ON SCHEMA public FROM imagine;"
+  sudo -u postgres psql -c "DROP DATABASE IF EXISTS imagine_notes;"
+  sudo -u postgres psql -c "DROP USER IF EXISTS imagine;"
 
   sudo systemctl stop postgresql
 }

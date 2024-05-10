@@ -1,5 +1,5 @@
-CREATE DATABASE ensolvers_notes;
-CREATE USER ensolvers WITH PASSWORD 'srevlosne';
-GRANT ALL PRIVILEGES ON DATABASE ensolvers_notes TO ensolvers;
-\c ensolvers_notes
-GRANT CREATE ON SCHEMA public TO ensolvers;
+CREATE DATABASE imagine_notes;
+CREATE USER imagine WITH PASSWORD 'enigami';
+GRANT ALL PRIVILEGES ON DATABASE imagine_notes TO imagine;
+\c imagine_notes
+GRANT CREATE ON SCHEMA public TO imagine;
